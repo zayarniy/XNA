@@ -1,0 +1,17 @@
+﻿<Window x:Class="Password_MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Password_MVVM"
+        mc:Ignorable="d"
+        Title="Accounter" Height="150" Width="300">
+    <StackPanel>
+        <TextBlock>Логин</TextBlock>
+        <TextBox Name="tbLogin" Text="{Binding Path=Account.Login, UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}"/>
+        <TextBlock>Пароль</TextBlock>
+        <TextBox Name="tbPassword" Text="{Binding Path=Account.Password,UpdateSourceTrigger=PropertyChanged,Mode=OneWayToSource}"/>
+        <Button x:Name="btnAccess" Click="btnAccess_Click" >Ввести</Button>
+        <TextBlock x:Name="tbAccess" Text="{Binding Path=Access,UpdateSourceTrigger=PropertyChanged,Mode=OneWay}" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">Non available</TextBlock>
+    </StackPanel>
+</Window>
