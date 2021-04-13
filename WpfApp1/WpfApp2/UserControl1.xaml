@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="WpfApp2.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2"
+             mc:Ignorable="d" MinHeight="20" MinWidth="40">
+    <DockPanel>
+        <Button x:Name="btnPrev" Click="btnPrev_Click" Width="60">Prev</Button>
+        <Button x:Name="btnNext" Click="btnNext_Click" Width="{Binding ElementName=btnPrev,Path=Width}">Next</Button>
+    </DockPanel>
+</UserControl>

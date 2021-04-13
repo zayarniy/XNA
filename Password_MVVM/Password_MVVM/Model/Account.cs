@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Password_MVVM.Model
 {
-    class Account
+   public class Account
     {
         public string Login { get; set; } = "None";
         public string Password { get; set; } = "None";
@@ -32,6 +32,7 @@ namespace Password_MVVM.Model
             return true;
         }
 
+        //remove
         bool Check(Account account)
         {
             return CheckLogin(account.Login) && CheckPassword(account.Password);
@@ -40,8 +41,8 @@ namespace Password_MVVM.Model
         public bool Checks(Account account)
         {
             foreach (Account acc in ListAccounts)
-                if (Check(account) == false) return false;
-            return true;
+                if (acc.Login==account.Login && acc.Password==account.Password) return true;
+            return false;
         }
 
         public static List<Account> ListAccounts

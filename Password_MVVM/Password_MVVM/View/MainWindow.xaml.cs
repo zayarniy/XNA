@@ -21,21 +21,22 @@ namespace Password_MVVM
     /// </summary>
     public partial class MainWindow : Window
     {
-        ViewModel.ViewModel ViewModel { get; set; } = new ViewModel.ViewModel();
+        //ViewModel.ViewModel ViewModel { get; set; } = new ViewModel.ViewModel();
+        //ViewModel.ViewModel viewModel = new ViewModel.ViewModel();
 
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = ViewModel;
+            //this.DataContext = this.viewModel;
         }
 
         private void btnAccess_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(ViewModel.Account.Login);
-            Debug.WriteLine(ViewModel.Account.Password);
+            //Debug.WriteLine(viewModel.Account.Login);
+            //Debug.WriteLine(viewModel.Account.Password);
             //BindingExpression expression = tbAccess.GetBindingExpression(TextBlock.TextProperty);
             //expression.UpdateTarget();
-            ViewModel.Access = true;
+            //viewModel.Check();
             //ViewModel.Check();
         }
     }

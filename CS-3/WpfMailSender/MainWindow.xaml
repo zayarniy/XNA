@@ -1,0 +1,70 @@
+﻿<Window xmlns:TabSwitcher="clr-namespace:TabSwitcher;assembly=WpfMailSender"  x:Class="WpfMailSender.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfMailSender" 
+        xmlns:TabSwitcher1="clr-namespace:TabSwitcher;assembly=TabSwitcher"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="470" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="281*"/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Файл"/>
+            <MenuItem Header="Помощь"/>
+        </Menu>
+        <TabControl Grid.Row="1" Name="tcTabControl">
+            <TabItem Header="Редактирование писем">
+                <StackPanel>
+                    <Label Content="Название письма:" Width="auto"/>
+                    <TextBox Grid.Row="1"  x:Name="tbSubject" Width="200" HorizontalAlignment="Left"/>
+                    <Label Content="Содержимое письма:" Width="auto"/>
+                    <TextBox Grid.Row="1"  x:Name="tbBody" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="100" AcceptsReturn="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                    <Label Content="From"/>
+                    <ComboBox x:Name="cbFrom" Text="zaazaa@yandex.ru">
+                        <ComboBoxItem>zaazaa@yandex.ru</ComboBoxItem>
+                    </ComboBox>
+                    <Label Content="To"/>
+                    <ComboBox x:Name="cbTo" Text="zaazaa@yandex.ru">
+                        <ComboBoxItem>zaazaa@yandex.ru</ComboBoxItem>
+                        <ComboBoxItem>putin@kremlin.ru</ComboBoxItem>
+                    </ComboBox>
+                    <Button  x:Name="btnSend" Width="auto" Content="Отправить немедленно" Click="btnSend_Click"/>
+                    <Button  x:Name="btnSendbyRecipients" Width="auto" Content="Отправить всем" Click="btnSendbyRecipients_Click"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Настройки">
+                <WrapPanel Height="auto" VerticalAlignment="Top" Width="350" HorizontalAlignment="Left">
+                    <Label Content="Сервер:" Width="auto"/>
+                    <TextBox Grid.Row="1"  x:Name="tbServer" Width="200" HorizontalAlignment="Left" Text="smtp.yandex.ru"/>
+                    <Label Content="Порт:" Width="auto"/>
+                    <TextBox Grid.Row="1" x:Name="tbPort" Width="30" Text="25"/>
+                    <Line></Line>
+                    <Label Content="Имя пользователя:" Width="auto"/>
+                    <TextBox Grid.Row="1" x:Name="tbUserName" Width="350" Text="zaazaa@yandex.ru"/>
+                    <Label Content="Пароль:" Width="auto"/>
+                    <PasswordBox Grid.Row="1" x:Name="tbPassword" Width="350" PasswordChar="*" Password="12345678"/>
+
+                </WrapPanel>
+            </TabItem>
+            <TabItem Header="Журнал">
+                <TextBox x:Name="tbLog" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            </TabItem>
+            <TabItem Header="Списки">
+                <DataGrid x:Name="dgListRecipients">
+                    
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        <ToolBarTray x:Name="sbStatus" Grid.Row="2">
+            <ToolBar Height="30">
+                <TabSwitcher1:TabSwitcherControl x:Name="tscTabSwitcherControl" btnNextClick="tscTabSwitcherControl_btnNextClick" btnPreviousClick="tscTabSwitcherControl_btnPreviousClick" Margin="0,-6,0,6"                              />
+                <Label x:Name="lbStatus"/>
+            </ToolBar>
+        </ToolBarTray>        
+    </Grid>
+</Window>

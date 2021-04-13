@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Mailer.TabSwitcherControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mailer"
+             mc:Ignorable="d" x:Name="root">
+    <DockPanel>
+        <Button x:Name="btnPrevious"  Width="114" >
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Images/Move Previous (Arrow) Green64.png" Width="30" Height="16" />
+                    <TextBlock x:Name="tbPrev"  Margin="3,0,0,0" VerticalAlignment="Center" Text="{Binding PrevText,ElementName=root}" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnNext" Width="115" Margin="0">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="3,0,0,0" Text="{Binding NextText,ElementName=root}" />
+                    <Image Source="Images/Move Next (Arrow) Green64.png" Width="30" Height="16" Margin="5,0,0,0" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </DockPanel>
+</UserControl>

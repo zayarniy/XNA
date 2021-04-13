@@ -5,23 +5,33 @@ using System.Linq;
 using System.Runtime.CompilerServices;//for [CallerMemberName]
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Password_MVVM.ViewModel
 {
-    public class ViewModelBase : INotifyPropertyChanged
+
+
+    public class ViewModel: INotifyPropertyChanged
     {
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged([CallerMemberName] string caller = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
-        }
-    }
-
-    class ViewModel: ViewModelBase
-    {
-
         bool access;
+        int attemptCount = 0;
+        public int AttemptCount
+        {
+            get
+            { return attemptCount; }
+
+            private set
+            {
+                if (attemptCount != value)
+                {
+                    attemptCount = value;
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("AttemptCount"));
+                }
+            }
+        }
 
         public Model.Account Account { get; set; } = new Model.Account("None", "None");
 
@@ -32,17 +42,35 @@ namespace Password_MVVM.ViewModel
             Access = Accounts.Checks(Account);
         }
 
+        public ICommand ClickAccess
+        {
+            get
+            {
+                return new DelegateCommand((obj) =>
+                    {
+                        Check();
+                        AttemptCount++;
+                    }, (obj) => AttemptCount < 3
+                ); ;
+            }
+        }
+
         public bool Access
         {
             get
             {
-                return Accounts.Checks(Account);
+                return access;
             }
             set
             {
-                access = value;
-                OnPropertyChanged("Access");
+                if (access != value)
+                {
+                    access = value;                    
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Access"));
+                }
             }
         }
+
+        
     }
 }

@@ -1,0 +1,28 @@
+﻿<Window x:Class="DataGeneratorForHW.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataGeneratorForHW"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="160" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel Grid.Row="1">
+            <TextBlock>Имя файла</TextBlock>
+            <TextBox Text="{Binding TemplateFilename,Mode=TwoWay}"></TextBox>
+            <TextBlock>Количество</TextBlock>
+            <TextBox Text="{Binding Count,Mode=TwoWay}"></TextBox>
+            <Button x:Name="btnStart" Click="btnStart_Click">Generate</Button>
+            <TextBlock Text="Status" x:Name="tbStatus"/>
+        </StackPanel>
+    </Grid>
+</Window>

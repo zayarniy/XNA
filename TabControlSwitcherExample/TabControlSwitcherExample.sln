@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabControlSwitcherExample", "TabControlSwitcherExample\TabControlSwitcherExample.csproj", "{CE1594DE-4DE7-4040-99E7-396AEFBF6413}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySuperControls", "MySuperControls\MySuperControls.csproj", "{C596614C-013B-4FC9-B8EE-254D4D4C9A73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE1594DE-4DE7-4040-99E7-396AEFBF6413}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE1594DE-4DE7-4040-99E7-396AEFBF6413}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE1594DE-4DE7-4040-99E7-396AEFBF6413}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE1594DE-4DE7-4040-99E7-396AEFBF6413}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C596614C-013B-4FC9-B8EE-254D4D4C9A73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C596614C-013B-4FC9-B8EE-254D4D4C9A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C596614C-013B-4FC9-B8EE-254D4D4C9A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C596614C-013B-4FC9-B8EE-254D4D4C9A73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5CDEE51-61DA-4E06-B962-D56F095177EB}
+	EndGlobalSection
+EndGlobal

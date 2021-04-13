@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Mailer.ToolBarChooser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mailer"
+             mc:Ignorable="d">
+    <DockPanel Height="25">
+        <TextBlock DockPanel.Dock="Left" x:Name="tbSender" Width="130" Height="25"/>
+        <ComboBox DockPanel.Dock="Left"  x:Name="cbSenderSelect" SelectedIndex="0" Width="150" IsReadOnly="False" IsEditable="True" ToolTip="Выбрать email отправителя">
+        </ComboBox>
+        <Button Width="25" Height="25" x:Name="btnAddSender" ToolTip="Добавить" Click="btnAdd_Click">
+            <Image x:Name="iAdd" Source="/Images/New Add64.png"/>
+        </Button>
+        <Button Width="25" Height="25"  x:Name="btnEditSender" ToolTip="Редактировать" Click="btnEdit_Click">
+            <Image x:Name="iEdit" Source="/Images/New Edit64.png" />
+
+        </Button>
+        <Button Width="25" Height="25" x:Name="btnRemoveSender" ToolTip="Удалить" Click="btnRemove_Click">
+            <Image x:Name="iRemove" Source="/Images/New Remove64.png" />
+        </Button>
+
+    </DockPanel>
+
+</UserControl>

@@ -1,0 +1,16 @@
+﻿<Window x:Class="CSharpASync.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSharpASync"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+    <StackPanel>
+        <TextBlock>Вы не сможете печатать после нажатия кнопки Call method 10 сек</TextBlock>
+        <Button x:Name="btnButton" Click="btnButton_Click">Call method</Button>
+    </StackPanel>
+    <TextBox x:Name="tbText" FontSize="35">Попробуйте напечатать здесь</TextBox>
+    </StackPanel>
+</Window>
