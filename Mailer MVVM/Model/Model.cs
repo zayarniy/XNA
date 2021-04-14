@@ -10,8 +10,8 @@ namespace Mailer.Model
     public class Account : INotifyPropertyChanged
     //Нередко модель реализует интерфейсы INotifyPropertyChanged или INotifyCollectionChanged,которые позволяют уведомлять систему об изменениях свойств модели.
     {
-        private string login = "None";
-        private string password = "None";
+        private string login = "root";
+        private string password = "root";
 
         public string Login
         {
@@ -65,17 +65,27 @@ namespace Mailer.Model
 
         public static void Add(Account account)
         {
-
+            accounts.Add(account);
+            Console.WriteLine("Account was added");
         }
 
         public static void Remove(Account account)
         {
-
+            Console.WriteLine("Account was {0} removed",(accounts.Remove(account)?"":"not"));
+            
         }
 
         public static void RemoveAt(int index)
         {
-
+            try
+            {
+                accounts.RemoveAt(index);
+                Console.WriteLine("Account was removed");
+            }
+            catch
+            {
+                Console.WriteLine("Account wasn't removed");
+            }
         }
 
     }
