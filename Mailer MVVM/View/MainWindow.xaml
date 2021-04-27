@@ -23,9 +23,6 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="Файл">
-                <!--<MenuItem x:Name="miReport" Header="Отчет" Click="miReport_Click" />-->
-                <MenuItem x:Name="miReport" Header="Отчет" Command="{Binding Report}" />
-
                 <MenuItem Header="Выход">
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="Click">
@@ -146,9 +143,9 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
                     </Grid.RowDefinitions>
                     <local:TableScheduler x:Name="tbTime"  Grid.ColumnSpan="2" ItemsSource="{Binding ElementName=MainVM, Path=Database.Items}"/>
                     <!--<StackPanel>
@@ -223,7 +220,7 @@
                     <PasswordBox Grid.Row="1" x:Name="tbPassword" Width="350" PasswordChar="*" Password="12345678"/>
                 </WrapPanel>
             </TabItem>
-            <TabItem>
+            <TabItem Selector.Selected="TabItem_Selected">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <Image Source="/Images/stat.ico" Width="20" HorizontalAlignment="Left"/>
@@ -232,7 +229,8 @@
                     </StackPanel>
                 </TabItem.Header>
                 <WindowsFormsHost>
-                    <rdlcreport:ReportViewer x:Name="_reportviewer"/>
+                    <!-- так как ReportViewer является элементом WinForms для его использования приходится нарушать модель MVVM-->
+                    <rdlcreport:ReportViewer x:Name="_reportviewer" />
                 </WindowsFormsHost>
             </TabItem>
 

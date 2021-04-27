@@ -84,10 +84,6 @@
     <Compile Include="Model\Model.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ViewModels\ViewModelAccess.cs" />
-    <Compile Include="ViewModels\ViewModelReport.cs" />
-    <Compile Include="View\ReportWindow.xaml.cs">
-      <DependentUpon>ReportWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ViewLogin.xaml.cs">
       <DependentUpon>ViewLogin.xaml</DependentUpon>
     </Compile>
@@ -131,10 +127,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\ReportWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\ViewLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +153,7 @@
     <EmbeddedResource Include="Report.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Mailer.Model.Database.datasource" />
+    <None Include="Properties\DataSources\Mailer.ViewModels.ViewModelMain.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -296,22 +296,6 @@ namespace Mailer.ViewModels
             }
         }
 
-        public ICommand Report
-        {
-            get
-            {
-                return new DelegateCommand((obj) =>
-                {
-                    View.ReportWindow reportWindow = new View.ReportWindow(this);
-                    reportWindow.DataContext = this;
-                    
-                    reportWindow.ShowDialog();
-                    Console.WriteLine("Report ");
-
-                },
-                (obj) => true);
-            }
-        }
 
     }
 }

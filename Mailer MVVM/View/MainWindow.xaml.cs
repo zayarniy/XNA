@@ -1,4 +1,5 @@
 ﻿using Mailer.Model;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,12 @@ namespace Mailer
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        //ViewModels.ViewModelMain ViewModel { get; set; } = new ViewModels.ViewModelMain();
+        //Из-за того, что Report не является элементов WPF приходится нарушать MVVM
         public MainWindow()
         {
             InitializeComponent();
-          //  tbTime.ItemsSource = ViewModel.Database.Items;
-//            this.DataContext = ViewModel;
+            this.DataContext = MainVM;
+            InitializeReport();
 
         }
 
@@ -37,6 +37,32 @@ namespace Mailer
         {
 //            View.ReportWindow reportWindow = new View.ReportWindow();
 //            reportWindow.ShowDialog();
+        }
+
+
+
+        private void InitializeReport()
+        {
+            _reportviewer.LocalReport.DataSources.Clear();
+            var rpds_model = new ReportDataSource() { Name = "DataSet1", Value = MainVM.Database.Items };
+
+            _reportviewer.LocalReport.DataSources.Add(rpds_model);
+            _reportviewer.LocalReport.EnableExternalImages = true;
+            _reportviewer.LocalReport.ReportPath = ContentStart;
+            _reportviewer.SetDisplayMode(DisplayMode.PrintLayout);
+//            _reportviewer.Refresh();
+            _reportviewer.RefreshReport();
+        }
+
+
+        private static string _path = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())));
+
+        public static string ContentStart = _path + @"\Mailer MVVM\Report.rdlc";
+
+        private void TabItem_Selected(object sender, RoutedEventArgs e)
+        {
+            _reportviewer.RefreshReport();
+
         }
     }
 }

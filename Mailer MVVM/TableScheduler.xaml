@@ -4,20 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Mailer"
-            x:Name="root">
+            x:Name="root" MaxWidth="550" MinWidth="530">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
         <Calendar Grid.Row="0" x:Name="cldSchedulDateTimes" SelectionMode="MultipleRange"  SelectedDate="{Binding Date,Mode=TwoWay}"  Grid.ColumnSpan="3" SelectedDatesChanged="CldSchedulDateTimes_SelectedDatesChanged" />
         <TextBlock Text="Hour:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
@@ -26,8 +26,11 @@
         <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbHour" ItemsSource="{Binding Numbers24}" Text="{Binding Hour,Mode=TwoWay}" Width="45" HorizontalAlignment="Left" MaxDropDownHeight="100"/>
         <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cbMinute" ItemsSource="{Binding Numbers60}" Text="{Binding Minute,Mode=TwoWay}" Width="45" HorizontalAlignment="Left" MaxDropDownHeight="100"/>
         <ComboBox Grid.Row="3" Grid.Column="1" x:Name="cbSecond" ItemsSource="{Binding Numbers60}" Text="{Binding Second,Mode=TwoWay}" Width="45" HorizontalAlignment="Left" MaxDropDownHeight="100"/>
-        <DataGrid ItemsSource="{Binding ItemsSource,ElementName=root}" AutoGenerateColumns="True" Grid.Column="3" x:Name="dgGrid" SelectedCellsChanged="DgGrid_SelectedCellsChanged">
-        <!--    <DataGrid Grid.Column="3" x:Name="dgGrid" SelectedCellsChanged="DgGrid_SelectedCellsChanged">-->
+        <DataGrid ItemsSource="{Binding ItemsSource,ElementName=root}" AutoGenerateColumns="True" Grid.Column="3" x:Name="dgGrid" SelectedCellsChanged="DgGrid_SelectedCellsChanged" MaxHeight="165" MinHeight="165"
+                  MaxWidth="400" MinWidth="350" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" >
+            
         </DataGrid>
+        <!--    <DataGrid Grid.Column="3" x:Name="dgGrid" SelectedCellsChanged="DgGrid_SelectedCellsChanged">-->
+        
     </Grid>
 </UserControl>
