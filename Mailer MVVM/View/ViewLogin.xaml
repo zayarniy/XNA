@@ -6,16 +6,36 @@
         xmlns:local="clr-namespace:Mailer.View"
         mc:Ignorable="d"
         xmlns:viewmodel="clr-namespace:Mailer.ViewModels"
-        Title="MainWindow" Height="180" Width="400">
+        Title="Авторизация" Height="250" Width="230">
 
 
     <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+        </StackPanel.Resources>
         <TextBlock>Логин</TextBlock>
         <TextBox Name="tbLogin" Text="{Binding Path=Account.Login, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
         <TextBlock>Пароль</TextBlock>
         <TextBox Name="tbPassword" Text="{Binding Path=Account.Password,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
         <Button x:Name="btnAccess" Command="{Binding ClickAccess}">Ввести</Button>
-        <Button x:Name="btnClearLogin" Command="{Binding ClickClearLogin}" CommandParameter="{Binding Path=Account.Login}" >Очистить логин</Button>
+        <Button x:Name="btnClearLogin" Command="{Binding ClickClearLogin}" CommandParameter="{Binding Path=Account.Login}" >
+            Очистить логин
+            <Button.ToolTip>
+                Реализуйте самостоятельно
+            </Button.ToolTip>
+        </Button>
+        <Button x:Name="btnClearPassword" Command="{Binding ClickClearPassword}" CommandParameter="{Binding Path=Account.Password}" >
+            Очистить пароль
+            <Button.ToolTip>
+                Реализуйте самостоятельно
+            </Button.ToolTip>
+
+        </Button>
         <TextBlock x:Name="tbAccess" Text="{Binding Path=Access}" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <TextBlock x:Name="tbAttemptCount" Text="{Binding Path=AttemptCount,StringFormat=Попытка {0}}" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
     </StackPanel>

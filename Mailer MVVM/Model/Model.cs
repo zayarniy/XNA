@@ -22,7 +22,7 @@ namespace Mailer.Model
                 {
                     login = value;
                     //Если у элемента OneWayToSource - PropertyChanged.Invoke не обновляет данные    
-                    Console.WriteLine("1");
+                    Console.WriteLine("Login sets");
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Login"));
                 }
             }

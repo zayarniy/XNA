@@ -32,9 +32,11 @@ namespace Mailer
 
         }
 
-        private void tscTabSwitcherControl_Loaded(object sender, RoutedEventArgs e)
-        {
 
+        private void miReport_Click(object sender, RoutedEventArgs e)
+        {
+//            View.ReportWindow reportWindow = new View.ReportWindow();
+//            reportWindow.ShowDialog();
         }
     }
 }

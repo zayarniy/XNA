@@ -19,7 +19,7 @@ namespace Mailer.ViewModels
         }
 
         #region Публичное свойство для привязки Account
-        public Model.Account Account { get; set; } = new Model.Account("None", "None");
+        public Model.Account Account { get; set; } = new Model.Account("root", "root");
 
         public int AttemptCount
         {
@@ -39,8 +39,8 @@ namespace Mailer.ViewModels
             if (flag)
             {
                 MainWindow wnd = new MainWindow();
-
                 wnd.Show();
+                //закрыть текущее окно или спрятать это отдельная задача, которая в чистом MVVM решает не очень просто
             }
 
         }

@@ -11,7 +11,7 @@ namespace Mailer.Model
 {
     public class MyMailMessage: MailMessage
     {
-        public MyMailMessage(string str1,string str2,string str3,string str4):base(str1,str2,str3,str4)
+        public MyMailMessage(string from,string to,string subject,string body):base(from,to,subject,body)
         {
 
         }
@@ -38,6 +38,8 @@ namespace Mailer.Model
 
         public MyMailMessage MailMessage { get; set; }
 
+        public string Subject { get => MailMessage.Subject; }
+
         public bool Sent
         {
             get => sent; set
@@ -59,10 +61,11 @@ namespace Mailer.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //public override string ToString()
-        //{
-        //    return DateTime.ToLongDateString() + " " + DateTime.ToLongTimeString() + ":" + MailMessage.Body;
-        //}
+        public override string ToString()
+        {
+            //return DateTime.ToLongDateString() + " " + DateTime.ToLongTimeString() + ":" + MailMessage.Body;
+            return "Mail";
+        }
     }
 
 
