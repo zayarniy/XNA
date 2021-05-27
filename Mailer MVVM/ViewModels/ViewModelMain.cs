@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Windows.Input;
 using Mailer.Model;
 using Mailer.Commands;
+using System.Windows.Controls;
 
 namespace Mailer.ViewModels
 {
@@ -17,11 +18,29 @@ namespace Mailer.ViewModels
         private string body = "";
         private int tickCount = 0;
 
+        DelegateCommand NextTab;
+        DelegateCommand PrevTab;
+
         //реализация интерфейса INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ViewModelMain()
         {
+            NextTab = new DelegateCommand((obj) =>
+            {
+                Console.WriteLine("Next");
+                TabSwitcherControl tsc = (obj as TabSwitcherControl);
+                TabControl tc = (tsc.CommandParameter as TabControl);//using System.Windows.Controls;
+                tc.SelectedIndex = (tc.SelectedIndex + 1) % tc.Items.Count;
+            });
+            PrevTab = new DelegateCommand((obj) =>
+            {
+                Console.WriteLine("Prev");
+                TabSwitcherControl tsc = (obj as TabSwitcherControl);
+                TabControl tc = (tsc.CommandParameter as TabControl);
+                if (tc.SelectedIndex == 0) tc.SelectedIndex = tc.Items.Count - 1;
+                else tc.SelectedIndex--;
+            });
             Model.Schedule schedule = new Model.Schedule(Tick, 5);
             schedule.Start();
         }
@@ -296,6 +315,9 @@ namespace Mailer.ViewModels
             }
         }
 
+        public ICommand ClickNext => NextTab;
+
+        public ICommand ClickPrev => PrevTab;
 
     }
 }

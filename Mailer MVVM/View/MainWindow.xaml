@@ -7,6 +7,7 @@
         xmlns:viewmodel="clr-namespace:Mailer.ViewModels"
         xmlns:rdlcreport="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
         Title="Рассыльщик" Height="500" Width="800" MaxHeight="500" MaxWidth="800" MinHeight="500" MinWidth="800" Icon="/Images/mailreminder.png"
         x:Name="wndMain">
@@ -57,19 +58,19 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <ToolBarTray Grid.Row="0" VerticalAlignment="Top" Width="Auto" Height="65" Grid.ColumnSpan="2">
-                        <ToolBar Width="400" Height="25" x:Name="tbSender">
+                        <ToolBar Width="auto" Height="auto" x:Name="tbSender">
                             <Label x:Name="lSender" Width="130" Height="25">Выбрать отправителя</Label>
-                            <ComboBox x:Name="cbSenderSelect" SelectedIndex="0" Width="150" IsReadOnly="True" ToolTip="Выбрать email отправителя">
+                            <ComboBox x:Name="cbSenderSelect" SelectedIndex="0" Width="100" IsReadOnly="True" ToolTip="Выбрать email отправителя">
                             </ComboBox>
-                            <Button Width="25" Height="25" x:Name="btnAddSender" ToolTip="Добавить">
-                                <Image Source="/Images/New Add64.png" />
-                            </Button>
-                            <Button Width="25" Height="25" x:Name="btnEditSender" ToolTip="Редактировать">
-                                <Image Source="/Images/New Edit64.png" />
+                            <Button x:Name="btnAddSender" ToolTip="Добавить" fa:Awesome.Content="Solid_CartPlus"/>
+                            <!--<Image Source="/Images/New Add64.png" />-->
 
-                            </Button>
-                            <Button Width="25" Height="25" x:Name="btnDeleteSender" ToolTip="Удалить">
-                                <Image Source="/Images/New Remove64.png" />
+                            <Button x:Name="btnEditSender" ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit"/>
+                            <!--<Image Source="/Images/New Edit64.png" />-->
+
+
+                            <Button x:Name="btnDeleteSender" ToolTip="Удалить" fa:Awesome.Content="Solid_Recycle">
+                                <!--<Image Source="/Images/New Remove64.png" />-->
 
                             </Button>
 
@@ -244,26 +245,20 @@
 
                 <TextBox x:Name="tbLog" Text="{Binding Log}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
 
-            </TabItem>                        
+            </TabItem>
         </TabControl>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70*"/>
                 <ColumnDefinition Width="30*"/>
             </Grid.ColumnDefinitions>
-            <StatusBar x:Name="sbStatus" HorizontalAlignment="Stretch"  Grid.Column="0">
+            <DockPanel HorizontalAlignment="Stretch" Grid.Column="0" Grid.ColumnSpan="2">
+            <StatusBar x:Name="sbStatus" HorizontalAlignment="Stretch" Width="300">
                 <Label x:Name="lbStatus"/>
                 <Label x:Name="lbTick" Content="{Binding TickCount}"/>
             </StatusBar>
-            <!--
-            <TabSwitcherControl:TabSwitcherControl
-                    x:Name="tscTabSwitcherControl" Grid.Column="1" Loaded="tscTabSwitcherControl_Loaded" >
-                <b:Interaction.Triggers>
-                    <b:EventTrigger EventName="btnPreviousClick">
-                        <b:InvokeCommandAction Command="{Binding Path=TabSwitcherPrev}"/>
-                    </b:EventTrigger>
-                </b:Interaction.Triggers>
-            </TabSwitcherControl:TabSwitcherControl>-->
+                <local:TabSwitcherControl DockPanel.Dock="Right"  HorizontalAlignment="Right" x:Name="tscTabSwitcherControl" CommandNext="{Binding ClickNext}" CommandPrev="{Binding ClickPrev}" CommandParameter="{Binding ElementName=tabControl}"/>
+            </DockPanel>
         </Grid>
     </Grid>
 </Window>
