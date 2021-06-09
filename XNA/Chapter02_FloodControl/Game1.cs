@@ -94,8 +94,9 @@ namespace FloodControl
                     }
                     break;
                 case GameStates.Playing:
-                    timeSinceLastInput +=
-                    (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    /*
+                    timeSinceLastInput +=(float)gameTime.ElapsedGameTime.TotalSeconds;
+
                     if (timeSinceLastInput >= MinTimeSinceLastInput)
                     {
                         HandleMouseInput(Mouse.GetState());
@@ -106,11 +107,85 @@ namespace FloodControl
                         CheckScoringChain(gameBoard.GetWaterChain(y));
                     }
                     gameBoard.GenerateNewPieces(true);
+                    break;*/
+                    timeSinceLastInput += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (gameBoard.ArePiecesAnimating())
+                    {
+                        gameBoard.UpdateAnimatedPieces();
+                    }
+                    else
+                    {
+                        gameBoard.ResetWater();
+                        for (int y = 0; y < GameBoard.GameBoardHeight; y++)
+                        {
+                            CheckScoringChain(gameBoard.GetWaterChain(y));
+                        }
+                        gameBoard.GenerateNewPieces(true);
+                        if (timeSinceLastInput >= MinTimeSinceLastInput)
+                        {
+                            HandleMouseInput(Mouse.GetState());
+                        }
+                    }
                     break;
             }
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+        }
+
+        private void DrawEmptyPiece(int pixelX, int pixelY)
+        {
+            spriteBatch.Draw(
+            playingPieces,
+            new Rectangle(pixelX, pixelY,
+            GamePiece.PieceWidth, GamePiece.PieceHeight), EmptyPiece,
+Color.White);
+        }
+        private void DrawStandardPiece(int x, int y,
+        int pixelX, int pixelY)
+        {
+            spriteBatch.Draw(
+            playingPieces, new Rectangle(pixelX, pixelY,
+            GamePiece.PieceWidth, GamePiece.PieceHeight),
+            gameBoard.GetSourceRect(x, y),
+            Color.White);
+        }
+        private void DrawFallingPiece(int pixelX, int pixelY,
+        string positionName)
+        {
+            spriteBatch.Draw(
+            playingPieces,
+            new Rectangle(pixelX, pixelY -
+            gameBoard.fallingPieces[positionName].VerticalOffset,
+            GamePiece.PieceWidth, GamePiece.PieceHeight),
+            gameBoard.fallingPieces[positionName].GetSourceRect(),
+            Color.White);
+        }
+        private void DrawFadingPiece(int pixelX, int pixelY,
+        string positionName)
+        {
+            spriteBatch.Draw(
+            playingPieces,
+            new Rectangle(pixelX, pixelY,
+            GamePiece.PieceWidth, GamePiece.PieceHeight),
+            gameBoard.fadingPieces[positionName].GetSourceRect(),
+            Color.White *
+            gameBoard.fadingPieces[positionName].alphaLevel);
+        }
+        private void DrawRotatingPiece(int pixelX, int pixelY,
+        string positionName)
+        {
+            spriteBatch.Draw(
+            playingPieces,
+            new Rectangle(pixelX + (GamePiece.PieceWidth / 2),
+            pixelY + (GamePiece.PieceHeight / 2),
+            GamePiece.PieceWidth,
+            GamePiece.PieceHeight),
+            gameBoard.rotatingPieces[positionName].GetSourceRect(),
+            Color.White,
+            gameBoard.rotatingPieces[positionName].RotationAmount, new Vector2(GamePiece.PieceWidth / 2,
+GamePiece.PieceHeight / 2),
+SpriteEffects.None, 0.0f);
         }
 
         private void CheckScoringChain(List<Vector2> WaterChain)
@@ -126,8 +201,8 @@ namespace FloodControl
                         playerScore += DetermineScore(WaterChain.Count);
                         foreach (Vector2 ScoringSquare in WaterChain)
                         {
-                            gameBoard.SetSquare((int)ScoringSquare.X,
-                            (int)ScoringSquare.Y, "Empty");
+                            gameBoard.AddFadingPiece((int)ScoringSquare.X,(int)ScoringSquare.Y,gameBoard.GetSquare((int)ScoringSquare.X,(int)ScoringSquare.Y));
+                            gameBoard.SetSquare((int)ScoringSquare.X,(int)ScoringSquare.Y, "Empty");
                         }
                     }
                 }
@@ -148,12 +223,14 @@ namespace FloodControl
             {
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
+                    gameBoard.AddRotatingPiece(x, y,gameBoard.GetSquare(x, y), false);
                     gameBoard.RotatePiece(x, y, false);
                     timeSinceLastInput = 0.0f;
                     Debug.WriteLine("x={0} y={1}", x, y);
                 }
                 if (mouseState.RightButton == ButtonState.Pressed)
                 {
+                    gameBoard.AddRotatingPiece(x, y,gameBoard.GetSquare(x, y), true);
                     gameBoard.RotatePiece(x, y, true);
                     timeSinceLastInput = 0.0f;
                 }
@@ -186,7 +263,7 @@ namespace FloodControl
                 this.Window.ClientBounds.Width,
                 this.Window.ClientBounds.Height),
         Color.White);
-                for (int x = 0; x < GameBoard.GameBoardWidth; x++)
+                /*for (int x = 0; x < GameBoard.GameBoardWidth; x++)
                     for (int y = 0; y < GameBoard.GameBoardHeight; y++)
                     {
                         int pixelX = (int)gameBoardDisplayOrigin.X +
@@ -210,6 +287,36 @@ namespace FloodControl
                         GamePiece.PieceHeight),
                         gameBoard.GetSourceRect(x, y),
                         Color.White);
+                    }*/
+                for (int x = 0; x < GameBoard.GameBoardWidth; x++)
+                    for (int y = 0; y < GameBoard.GameBoardHeight; y++)
+                    {
+                        int pixelX = (int)gameBoardDisplayOrigin.X +
+                        (x * GamePiece.PieceWidth);
+                        int pixelY = (int)gameBoardDisplayOrigin.Y +
+                        (y * GamePiece.PieceHeight);
+                        DrawEmptyPiece(pixelX, pixelY);
+                        bool pieceDrawn = false;
+                        string positionName = x.ToString() + "_" + y.ToString();
+                        if (gameBoard.rotatingPieces.ContainsKey(positionName))
+                        {
+                            DrawRotatingPiece(pixelX, pixelY, positionName);
+                            pieceDrawn = true;
+                        }
+                        if (gameBoard.fadingPieces.ContainsKey(positionName))
+                        {
+                            DrawFadingPiece(pixelX, pixelY, positionName);
+                            pieceDrawn = true;
+                        }
+                        if (gameBoard.fallingPieces.ContainsKey(positionName))
+                        {
+                            DrawFallingPiece(pixelX, pixelY, positionName);
+                            pieceDrawn = true;
+                        }
+                        if (!pieceDrawn)
+                        {
+                            DrawStandardPiece(x, y, pixelX, pixelY);
+                        }
                     }
                 this.Window.Title = playerScore.ToString();
                 spriteBatch.End();
