@@ -66,8 +66,6 @@ namespace FloodControl
             boardSquares[x, y].RotatePiece(clockwise);
         }
 
-        //Интересное решение. Главное, что можно вынести, что важно решить задачу.
-        //Потом ее можно будет улучшить
         private void UpdateFadingPieces()
         {
             Queue<string> RemoveKeys = new Queue<string>();
@@ -78,7 +76,11 @@ namespace FloodControl
                     RemoveKeys.Enqueue(thisKey.ToString());
             }
             while (RemoveKeys.Count > 0)
-                fadingPieces.Remove(RemoveKeys.Dequeue());
+            {
+                var rk = RemoveKeys.Dequeue();
+                System.Diagnostics.Debug.WriteLine(rk);
+                fadingPieces.Remove(rk);
+            }
         }
 
         private void UpdateFallingPieces()
@@ -94,6 +96,8 @@ namespace FloodControl
                 fallingPieces.Remove(RemoveKeys.Dequeue());
         }
 
+
+        //Здесь может быть анимирован только один объект
         private void UpdateRotatingPieces()
         {
             Queue<string> RemoveKeys = new Queue<string>();
@@ -103,8 +107,13 @@ namespace FloodControl
                 if (rotatingPieces[thisKey].rotationTicksRemaining == 0)
                     RemoveKeys.Enqueue(thisKey.ToString());
             }
+
             while (RemoveKeys.Count > 0)
-                rotatingPieces.Remove(RemoveKeys.Dequeue());
+            {
+                var rk=RemoveKeys.Dequeue();
+               //System.Diagnostics.Debug.WriteLine(rk);
+                rotatingPieces.Remove(rk);
+            }
         }
 
         public void UpdateAnimatedPieces()
