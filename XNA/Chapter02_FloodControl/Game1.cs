@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace FloodControl
 {
@@ -140,10 +141,8 @@ namespace FloodControl
 
         private void HandleMouseInput(MouseState mouseState)
         {
-            int x = ((mouseState.X -
-            (int)gameBoardDisplayOrigin.X) / GamePiece.PieceWidth);
-            int y = ((mouseState.Y -
-            (int)gameBoardDisplayOrigin.Y) / GamePiece.PieceHeight);
+            int x = ((mouseState.X - (int)gameBoardDisplayOrigin.X) / GamePiece.PieceWidth);
+            int y = ((mouseState.Y - (int)gameBoardDisplayOrigin.Y) / GamePiece.PieceHeight);
             if ((x >= 0) && (x < GameBoard.GameBoardWidth) &&
             (y >= 0) && (y < GameBoard.GameBoardHeight))
             {
@@ -151,6 +150,7 @@ namespace FloodControl
                 {
                     gameBoard.RotatePiece(x, y, false);
                     timeSinceLastInput = 0.0f;
+                    Debug.WriteLine("x={0} y={1}", x, y);
                 }
                 if (mouseState.RightButton == ButtonState.Pressed)
                 {

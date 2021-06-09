@@ -7,11 +7,11 @@ class GamePiece
 {
     public static string[] PieceTypes =
     {
-    "Left,Rigth",
+    "Left,Right",
     "Top,Bottom",
     "Left,Top",
     "Top,Right",
-    "Rigth,Bottom",
+    "Right,Bottom",
     "Bottom,Left",
     "Empty"
 };
@@ -131,8 +131,7 @@ class GamePiece
     {
         int x = textureOffsetX;
         int y = textureOffsetY;
-        if (pieceSuffix.Contains("W"))
-            x += PieceWidth + texturePaddingX;
+        if (pieceSuffix.Contains("W")) x += PieceWidth + texturePaddingX;
         y += (Array.IndexOf(PieceTypes, pieceType) *
         (PieceHeight + texturePaddingY));
         return new Rectangle(x, y, PieceWidth, PieceHeight);

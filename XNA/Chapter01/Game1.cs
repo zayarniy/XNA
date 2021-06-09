@@ -90,6 +90,7 @@ namespace Chapter01
             MouseState mouse = Mouse.GetState();
             if ((mouse.LeftButton==ButtonState.Pressed)&& (currentSquare.Contains(mouse.X,mouse.Y)))
             {
+                System.Diagnostics.Debug.WriteLine(currentSquare.Contains(mouse.X, mouse.Y));
                 playerScore++;
                 timeRemaining = 0.0f;
             }
