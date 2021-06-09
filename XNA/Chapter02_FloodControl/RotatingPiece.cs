@@ -10,9 +10,9 @@ namespace FloodControl
     class RotatingPiece: GamePiece
     {
         public bool clockwise;
-        public static float rotationRate = (MathHelper.PiOver2 / 10);
+        public static float rotationRate = (MathHelper.PiOver2 / 20);
         private float rotationAmount = 0;
-        public int rotationTicksRemaining = 10;
+        public int rotationTicksRemaining = 20;
 
         public float RotationAmount
         {

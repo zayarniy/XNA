@@ -66,6 +66,8 @@ namespace FloodControl
             boardSquares[x, y].RotatePiece(clockwise);
         }
 
+        //Интересное решение. Главное, что можно вынести, что важно решить задачу.
+        //Потом ее можно будет улучшить
         private void UpdateFadingPieces()
         {
             Queue<string> RemoveKeys = new Queue<string>();
