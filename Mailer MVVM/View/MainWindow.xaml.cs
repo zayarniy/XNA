@@ -1,20 +1,6 @@
-﻿using Mailer.Model;
-using Microsoft.Reporting.WinForms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Reporting.WinForms;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 //Здесь для взаимодействия с ViewModel используется библиотека MS XAMLBehavior WPF
 namespace Mailer
 {
@@ -55,9 +41,9 @@ namespace Mailer
         }
 
 
-        private static string _path = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())));
+        //private static string _path = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())));
 
-        public static string ContentStart = _path + @"\Mailer MVVM\Report.rdlc";
+        public static string ContentStart ="Report.rdlc";
 
         private void TabItem_Selected(object sender, RoutedEventArgs e)
         {

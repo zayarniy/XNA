@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1300
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter01", "Chapter01\Chapter01.csproj", "{ED7C27A7-6852-489A-92AB-498B9E9A5E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter02_FloodControl", "Chapter02_FloodControl\Chapter02_FloodControl.csproj", "{C4A157D2-2B35-459B-A417-2E484298C8F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED7C27A7-6852-489A-92AB-498B9E9A5E94}.Debug|x86.ActiveCfg = Debug|x86
+		{ED7C27A7-6852-489A-92AB-498B9E9A5E94}.Debug|x86.Build.0 = Debug|x86
+		{ED7C27A7-6852-489A-92AB-498B9E9A5E94}.Release|x86.ActiveCfg = Release|x86
+		{ED7C27A7-6852-489A-92AB-498B9E9A5E94}.Release|x86.Build.0 = Release|x86
+		{C4A157D2-2B35-459B-A417-2E484298C8F7}.Debug|x86.ActiveCfg = Debug|x86
+		{C4A157D2-2B35-459B-A417-2E484298C8F7}.Debug|x86.Build.0 = Debug|x86
+		{C4A157D2-2B35-459B-A417-2E484298C8F7}.Release|x86.ActiveCfg = Release|x86
+		{C4A157D2-2B35-459B-A417-2E484298C8F7}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72C7BDF7-C538-4E05-813E-20DB4BFBBBFF}
+	EndGlobalSection
+EndGlobal

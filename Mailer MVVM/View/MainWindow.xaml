@@ -20,11 +20,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="39*"/>
             <RowDefinition Height="281*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="Файл">
                 <MenuItem Header="Выход">
+                    <!--Interaction.Trigger нужен был для автоматизации закрытия окна без участия -->
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="Click">
                             <b:CallMethodAction TargetObject="{Binding ElementName=wndMain}" MethodName="Close"/>
@@ -148,7 +149,7 @@
                         <RowDefinition Height="20*"/>
                         <RowDefinition Height="20*"/>
                     </Grid.RowDefinitions>
-                    <local:TableScheduler x:Name="tbTime"  Grid.ColumnSpan="2" ItemsSource="{Binding ElementName=MainVM, Path=Database.Items}"/>
+                    <local:TableScheduler x:Name="tbTime"  Grid.ColumnSpan="2" ItemsSource="{Binding ElementName=MainVM, Path=Database.Items,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                     <!--<StackPanel>
                         
                         <local:TimePicker x:Name="tbTime" />
@@ -244,7 +245,11 @@
                 </TabItem.Header>
 
                 <TextBox x:Name="tbLog" Text="{Binding Log}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <local:TabSwitcherControl DockPanel.Dock="Right"  HorizontalAlignment="Right" x:Name="tscTabSwitcherControl" CommandNext="{Binding ClickNext}" CommandPrev="{Binding ClickPrev}" CommandParameter="{Binding ElementName=tabControl}"/>
+                </TabItem.Header>
             </TabItem>
         </TabControl>
         <Grid Grid.Row="2">
@@ -257,7 +262,6 @@
                 <Label x:Name="lbStatus"/>
                 <Label x:Name="lbTick" Content="{Binding TickCount}"/>
             </StatusBar>
-                <local:TabSwitcherControl DockPanel.Dock="Right"  HorizontalAlignment="Right" x:Name="tscTabSwitcherControl" CommandNext="{Binding ClickNext}" CommandPrev="{Binding ClickPrev}" CommandParameter="{Binding ElementName=tabControl}"/>
             </DockPanel>
         </Grid>
     </Grid>

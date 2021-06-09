@@ -178,7 +178,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report.rdlc" />
+    <EmbeddedResource Include="Report.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Mailer.Model.Database.datasource" />
     <None Include="Properties\DataSources\Mailer.ViewModels.ViewModelMain.datasource" />
