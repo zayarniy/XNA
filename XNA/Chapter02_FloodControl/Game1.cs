@@ -12,6 +12,10 @@ namespace FloodControl
     /// </summary>
     public class Game1 : Game
     {
+        TimeSpan totalGameTime, elapsedGameTime;
+        Vector2 totalGameTimePosition = new Vector2(550, 400);
+
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D playingPieces, backgroundScreen, titleScreen;
@@ -34,7 +38,7 @@ namespace FloodControl
         const float MaxFloodCounter = 100.0f;
         float floodCount = 0.0f;
         float timeSinceLastFloodIncrease = 0.0f;
-        float timeBetweenFloodIncreases = 1.0f;
+        float timeBetweenFloodIncreases = 0.3f;
         float floodIncreaseAmount = 0.5f;
 
         const int MaxWaterHeight = 244;
@@ -107,6 +111,8 @@ namespace FloodControl
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            totalGameTime = gameTime.TotalGameTime;
+            elapsedGameTime = gameTime.ElapsedGameTime;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -383,6 +389,8 @@ SpriteEffects.None, 0.0f);
                 waterHeight),
                 new Color(255, 255, 255, 180));
 
+                //spriteBatch.DrawString(pericles36Font, totalGameTime.Minutes.ToString()+":"+totalGameTime.Seconds.ToString(), totalGameTimePosition, Color.CornflowerBlue);
+                //spriteBatch.DrawString(pericles36Font, elapsedGameTime.Milliseconds.ToString(), new Vector2(0, 30), Color.White);
 
                 spriteBatch.End();
                 if (gameState == GameStates.GameOver)
